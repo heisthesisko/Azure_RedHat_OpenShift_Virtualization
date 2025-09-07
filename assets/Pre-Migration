@@ -1,0 +1,10 @@
+- hosts: vms
+  tasks:
+    - name: Stop MariaDB
+      service:
+        name: mariadb
+        state: stopped
+    - name: Create marker file
+      copy:
+        dest: /tmp/pre_migration.txt
+        content: "Pre-migration complete"

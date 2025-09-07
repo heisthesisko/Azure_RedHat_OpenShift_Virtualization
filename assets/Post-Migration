@@ -1,0 +1,18 @@
+- hosts: vms
+  gather_facts: no
+  tasks:
+    - name: Download Azure Arc onboarding script
+      get_url:
+        url: https://aka.ms/AzureArcAgentScript
+        dest: /tmp/install_arc_agent.sh
+        mode: '0755'
+
+    - name: Run Azure Arc onboarding script
+      shell: |
+        /tmp/install_arc_agent.sh \
+          --resource-group "my-rg" \
+          --subscription-id "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" \
+          --location "eastus" \
+          --tenant-id "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" \
+          --tags "env=prod" \
+          --no-proxy
