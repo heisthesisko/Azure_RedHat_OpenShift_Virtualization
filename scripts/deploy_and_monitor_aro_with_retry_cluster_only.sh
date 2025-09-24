@@ -1,7 +1,6 @@
 #!/bin/bash
 
 DEPLOY_SCRIPT="./deploy_aro_cluster_validated.sh"
-HEALTH_CHECK_SCRIPT="./aro_operator_health_check_with_logging.sh"
 MAX_RETRIES=3
 RETRY_DELAY=60  # in seconds
 LOG_FILE="aro_deployment_$(date +%Y%m%d_%H%M%S).log"
@@ -40,9 +39,7 @@ while [ $attempt -le $MAX_RETRIES ]; do
 done
 
 if [ $success -eq 1 ]; then
-  echo "🔎 Running operator health checks..." | tee -a "$LOG_FILE"
-  bash "$HEALTH_CHECK_SCRIPT" | tee -a "$LOG_FILE"
-  echo "🎉 Deployment and operator verification complete. See log: $LOG_FILE"
+  echo "🎉 Deployment verification complete. See log: $LOG_FILE"
 else
   echo "❌ All $MAX_RETRIES deployment attempts failed. Check log for errors: $LOG_FILE"
   exit 1
