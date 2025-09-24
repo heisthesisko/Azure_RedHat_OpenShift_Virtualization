@@ -2,7 +2,7 @@
 
 set -e
 
-RESOURCE_GROUP="YourResourceGroup"
+RESOURCE_GROUP="AroVirtTestCluster"
 LOCATION="westus"
 CLUSTER_NAME="aro-cluster"
 VNET_NAME="aro-vnet"
