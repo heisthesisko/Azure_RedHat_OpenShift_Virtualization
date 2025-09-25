@@ -5,8 +5,8 @@ set -euo pipefail
 # ============================================================================
 # ARO Deployment with Tag Inheritance from Resource Group (Azure Policy)
 # - Uses Azure Policy (modify) to inherit selected RG tag keys onto resources
-# - Assignment uses --assign-identity and grants "Resource Policy Contributor"
-#   at the RG scope to the assignment's managed identity
+# - Assignment uses --assign-identity with a valid --location for MI
+#   and grants "Resource Policy Contributor" RBAC at RG scope
 # - Blob container labeling uses --metadata (containers don't take Azure tags)
 # ============================================================================
 
@@ -183,12 +183,13 @@ assign_policy_to_rg() {
     az policy assignment delete --name "$POLICY_ASSIGN_NAME" --scope "$scope" >/dev/null 2>&1 || true
   fi
 
-  # Create assignment with a system-assigned identity
+  # Create assignment with a system-assigned identity with explicit location (required)
   az policy assignment create \
     --name "$POLICY_ASSIGN_NAME" \
     --scope "$scope" \
     --policy "$POLICY_DEF_NAME" \
-    --assign-identity >/dev/null
+    --assign-identity \
+    --location "$LOCATION" >/dev/null
 
   # Fetch the identity principalId and grant the required RBAC at RG scope
   local principal_id
@@ -200,13 +201,20 @@ assign_policy_to_rg() {
   fi
 
   echo "🔐 Granting 'Resource Policy Contributor' to the assignment identity at RG scope..."
-  az role assignment create \
-    --assignee-object-id "$principal_id" \
-    --assignee-principal-type ServicePrincipal \
-    --role "Resource Policy Contributor" \
-    --scope "$scope" >/dev/null
-
-  echo "✅ Policy assignment created and identity permissioned at: $scope"
+  # Retry loop to handle identity propagation delays
+  for attempt in {1..5}; do
+    if az role assignment create \
+      --assignee-object-id "$principal_id" \
+      --assignee-principal-type ServicePrincipal \
+      --role "Resource Policy Contributor" \
+      --scope "$scope" >/dev/null 2>&1; then
+      echo "✅ Role granted."
+      break
+    else
+      echo "⏳ Waiting for MI propagation before granting role (attempt $attempt/5)..."
+      sleep 10
+    fi
+  done
 }
 
 # ------------------------------
