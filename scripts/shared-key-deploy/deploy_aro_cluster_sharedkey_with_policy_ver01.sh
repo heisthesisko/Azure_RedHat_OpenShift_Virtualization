@@ -4,10 +4,10 @@ set -euo pipefail
 
 # ============================================================================
 # ARO Deployment with Tag Inheritance from Resource Group (Azure Policy)
-# - Creates/updates a custom Azure Policy (modify) that inherits selected tag keys
-#   from the Resource Group to all resources in that RG
-# - Assigns the policy at RG scope with a SystemAssigned identity
-# - Uses --metadata for blob container labeling (not Azure resource tags)
+# - Uses Azure Policy (modify) to inherit selected RG tag keys onto resources
+# - Assignment uses --assign-identity and grants "Resource Policy Contributor"
+#   at the RG scope to the assignment's managed identity
+# - Blob container labeling uses --metadata (containers don't take Azure tags)
 # ============================================================================
 
 # ------------------------------
@@ -70,10 +70,7 @@ CONTAINER_NAME="arocontainer"
 # ------------------------------
 # Tagging / Policy configuration
 # ------------------------------
-# Default RG tags (space-separated key=value)
 DEFAULT_RG_TAGS=("Environment=Prod" "Owner=Engineering" "SecurityControl=Ignore")
-
-# Tag keys to inherit to resources in this RG
 INHERIT_TAG_KEYS=("Environment" "Owner" "SecurityControl")
 
 POLICY_DEF_NAME="Inherit-RG-Tags-SelectedKeys"
@@ -120,7 +117,7 @@ apply_rg_tags() {
 create_or_update_policy_definition() {
   echo "🛡️  Creating/updating custom policy definition to inherit specific tag keys..."
 
-  # Resolve role definition ID for 'Resource Policy Contributor' (required for modify effect)
+  # Resolve role definition ID for 'Resource Policy Contributor' (required in policyRule)
   local rpc_role_id
   rpc_role_id=$(az role definition list --name "Resource Policy Contributor" --query "[0].id" -o tsv)
   if [[ -z "$rpc_role_id" ]]; then
@@ -138,7 +135,7 @@ create_or_update_policy_definition() {
   done
   ops+="]"
 
-  # The --rules file must contain ONLY the policyRule object (if/then), not 'properties'
+  # Only the policyRule JSON goes into --rules
   policy_rule_file="$(mktemp)"
   cat > "$policy_rule_file" <<EOF
 {
@@ -157,7 +154,6 @@ create_or_update_policy_definition() {
 }
 EOF
 
-  # Create or update the policy definition
   if az policy definition show --name "$POLICY_DEF_NAME" >/dev/null 2>&1; then
     az policy definition update \
       --name "$POLICY_DEF_NAME" \
@@ -182,20 +178,35 @@ assign_policy_to_rg() {
   local scope
   scope=$(az group show --name "$RESOURCE_GROUP" --query id -o tsv)
 
-  # Clean up existing assignment if present
+  # Remove old assignment if present
   if az policy assignment show --name "$POLICY_ASSIGN_NAME" --scope "$scope" >/dev/null 2>&1; then
     az policy assignment delete --name "$POLICY_ASSIGN_NAME" --scope "$scope" >/dev/null 2>&1 || true
   fi
 
-  # Create assignment with SystemAssigned identity (required for modify effect)
+  # Create assignment with a system-assigned identity
   az policy assignment create \
     --name "$POLICY_ASSIGN_NAME" \
     --scope "$scope" \
     --policy "$POLICY_DEF_NAME" \
-    --identity-type "SystemAssigned" \
-    --location "$LOCATION" >/dev/null
+    --assign-identity >/dev/null
 
-  echo "✅ Policy assignment created at scope: $scope"
+  # Fetch the identity principalId and grant the required RBAC at RG scope
+  local principal_id
+  principal_id=$(az policy assignment show --name "$POLICY_ASSIGN_NAME" --scope "$scope" --query "identity.principalId" -o tsv)
+
+  if [[ -z "$principal_id" || "$principal_id" == "None" ]]; then
+    echo "❌ Failed to obtain policy assignment managed identity principalId."
+    exit 1
+  fi
+
+  echo "🔐 Granting 'Resource Policy Contributor' to the assignment identity at RG scope..."
+  az role assignment create \
+    --assignee-object-id "$principal_id" \
+    --assignee-principal-type ServicePrincipal \
+    --role "Resource Policy Contributor" \
+    --scope "$scope" >/dev/null
+
+  echo "✅ Policy assignment created and identity permissioned at: $scope"
 }
 
 # ------------------------------
