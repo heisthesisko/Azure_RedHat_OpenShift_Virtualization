@@ -112,7 +112,7 @@ az storage account create   --name $STORAGE_ACCOUNT_NAME   --resource-group $RES
 ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP --account-name $STORAGE_ACCOUNT_NAME --query "[0].value" -o tsv)
 
 echo "📂 Creating blob container $CONTAINER_NAME using account key..."
-az storage container create   --name $CONTAINER_NAME   --account-name $STORAGE_ACCOUNT_NAME   --account-key $ACCOUNT_KEY --tags "SecurityControl=Ignore"
+az storage container create   --name $CONTAINER_NAME   --account-name $STORAGE_ACCOUNT_NAME   --account-key $ACCOUNT_KEY
 
 # ------------------------------
 # Step 5: Pull Secret
