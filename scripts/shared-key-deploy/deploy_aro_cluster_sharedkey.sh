@@ -106,7 +106,7 @@ az network vnet subnet create   --resource-group $RESOURCE_GROUP   --vnet-name $
 # Step 4: Storage (Shared Key Enabled)
 # ------------------------------
 echo "📦 Creating storage account $STORAGE_ACCOUNT_NAME (Shared Key Enabled)..."
-az storage account create   --name $STORAGE_ACCOUNT_NAME   --resource-group $RESOURCE_GROUP   --location $LOCATION   --sku Standard_LRS   --kind StorageV2   --min-tls-version TLS1_2   --allow-blob-public-access false   --allow-shared-key-access true   --enable-hierarchical-namespace true --tags SecurityControl=Ignore
+az storage account create   --name $STORAGE_ACCOUNT_NAME   --resource-group $RESOURCE_GROUP   --location $LOCATION   --sku Standard_LRS   --kind StorageV2   --min-tls-version TLS1_2   --allow-blob-public-access false   --allow-shared-key-access true   --enable-hierarchical-namespace true --tags "SecurityControl=Ignore"
 
 # Get storage key
 ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP --account-name $STORAGE_ACCOUNT_NAME --query "[0].value" -o tsv)
