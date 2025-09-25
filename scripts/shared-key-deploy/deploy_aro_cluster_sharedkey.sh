@@ -112,7 +112,7 @@ az storage account create   --name $STORAGE_ACCOUNT_NAME   --resource-group $RES
 ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP --account-name $STORAGE_ACCOUNT_NAME --query "[0].value" -o tsv)
 
 echo "📂 Creating blob container $CONTAINER_NAME using account key..."
-az storage container create   --name $CONTAINER_NAME   --account-name $STORAGE_ACCOUNT_NAME   --account-key $ACCOUNT_KEY
+az storage container create   --name $CONTAINER_NAME   --account-name $STORAGE_ACCOUNT_NAME   --account-key $ACCOUNT_KEY --tags "SecurityControl=Ignore"
 
 # ------------------------------
 # Step 5: Pull Secret
@@ -125,7 +125,7 @@ echo
 # Step 6: Create ARO Cluster
 # ------------------------------
 echo "🚀 Creating ARO cluster version $ARO_VERSION..."
-az aro create   --resource-group $RESOURCE_GROUP   --name $CLUSTER_NAME   --vnet $VNET_NAME   --master-subnet $MASTER_SUBNET   --worker-subnet $WORKER_SUBNET   --location $LOCATION   --pull-secret "$PULL_SECRET"   --cluster-resource-group "${CLUSTER_NAME}-infra"   --version $ARO_VERSION   --master-vm-size $MASTER_VM_SIZE   --worker-vm-size $WORKER_VM_SIZE
+az aro create   --resource-group $RESOURCE_GROUP   --name $CLUSTER_NAME   --vnet $VNET_NAME   --master-subnet $MASTER_SUBNET   --worker-subnet $WORKER_SUBNET   --location $LOCATION   --pull-secret "$PULL_SECRET"   --cluster-resource-group "${CLUSTER_NAME}-infra"   --version $ARO_VERSION   --master-vm-size $MASTER_VM_SIZE   --worker-vm-size $WORKER_VM_SIZE --tags "SecurityControl=Ignore"
 
 # ------------------------------
 # Step 7: Wait for cluster
