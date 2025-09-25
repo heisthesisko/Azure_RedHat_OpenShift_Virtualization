@@ -41,3 +41,8 @@ flowchart TD
 - Log into OCP portal
 - Upgrade cluster if needed
 - Install operators
+
+## Reference Content
+
+https://learn.microsoft.com/en-us/azure/openshift/howto-create-openshift-cluster?source=recommendations&pivots=aro-az-cli
+https://learn.microsoft.com/en-us/azure/openshift/howto-upgrade-aro-openshift-cluster#set-the-upgradeable-to-annotation-on-the-azure-red-hat-openshift-clusters-cloudcredential-resource
