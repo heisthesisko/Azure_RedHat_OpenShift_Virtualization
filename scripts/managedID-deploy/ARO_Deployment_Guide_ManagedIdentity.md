@@ -39,10 +39,20 @@ flowchart TD
 
 ## ✅ Post-Deployment Tasks
 - Log into OCP portal
+
+```bash
+az aro list-credentials --name <CLUSTER_NAME> --resource-group <RESOURCE_GROUP>
+```
+
 - Upgrade cluster if needed
+
+```bash
+az aro update --name <Cluster_Name> --resource-group <RESOURCE_GROUP> --upgradeable-to X.X.X
+```
+
 - Install operators
 
 ## Reference Content
-
+https://learn.microsoft.com/en-us/azure/openshift/howto-create-openshift-virtualization
 https://learn.microsoft.com/en-us/azure/openshift/howto-create-openshift-cluster?source=recommendations&pivots=aro-az-cli
 https://learn.microsoft.com/en-us/azure/openshift/howto-upgrade-aro-openshift-cluster#set-the-upgradeable-to-annotation-on-the-azure-red-hat-openshift-clusters-cloudcredential-resource
