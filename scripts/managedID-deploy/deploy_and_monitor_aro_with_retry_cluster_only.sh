@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEPLOY_SCRIPT="./deploy_aro_cluster_managedid.sh"
+DEPLOY_SCRIPT="./deploy_aro_cluster_managedid_preview.sh"
 MAX_RETRIES=3
 RETRY_DELAY=60  # in seconds
 LOG_FILE="aro_deployment_$(date +%Y%m%d_%H%M%S).log"
