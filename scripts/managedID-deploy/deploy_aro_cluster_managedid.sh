@@ -54,7 +54,7 @@ VNET_ADDRESS_PREFIX="10.0.0.0/22"
 MASTER_SUBNET_PREFIX="10.0.0.0/23"
 WORKER_SUBNET_PREFIX="10.0.2.0/23"
 # Use the latest ARO 4.x version available (example shown for 4.18.18)
-ARO_VERSION="4.18.18"
+ARO_VERSION="4.17.27"
 
 # Storage naming
 STORAGE_ACCOUNT_NAME="aro$(openssl rand -hex 4)"
