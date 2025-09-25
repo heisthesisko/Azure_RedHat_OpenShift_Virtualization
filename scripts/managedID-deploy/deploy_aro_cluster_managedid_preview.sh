@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+# ------------------------------------------------------------
+# We need to add preview extension for managed identity support
+# ------------------------------------------------------------
+
+az extension add --source aro-1.0.12-py2.py3-none-any.whl
+echo "✅ ARO preview extension installed, lets deploy your new ARO Cluster using managed identity."
 # ------------------------------
 # Prompt user for input
 # ------------------------------
@@ -203,12 +209,12 @@ az aro create --resource-group "$RESOURCE_GROUP" --name "$CLUSTER_NAME"   --vnet
 # Step 8: Wait for Ready
 # ------------------------------
 echo "⏳ Waiting for ARO cluster to reach 'Succeeded'..."
-for i in {1..60}; do
+for i in {1..90}; do
   STATUS=$(az aro show --resource-group "$RESOURCE_GROUP" --name "$CLUSTER_NAME" --query provisioningState -o tsv)
   if [[ "$STATUS" == "Succeeded" ]]; then
     echo "✅ Cluster is ready."
     break
   fi
-  echo "⏱️  [$i/60] Current status: $STATUS... waiting 30s"
+  echo "⏱️  [$i/90] Current status: $STATUS... waiting 30s"
   sleep 30
 done
