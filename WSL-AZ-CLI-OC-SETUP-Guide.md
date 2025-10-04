@@ -9,12 +9,12 @@
 
 ```mermaid
 flowchart LR
-  A[Windows 11 Host] --> B[WSL2 Engine]
-  B --> C[RHEL on WSL (root user)]
-  C -->|dnf| D[Azure CLI 2.67 (pinned)]
-  C -->|curl/tar| E[OpenShift CLI (oc,kubectl)]
-  C --> F[/~/deploymentscripts/]
-  C --> G[/~/ocadmin/]
+  A["Windows 11 Host"] --> B["WSL2 Engine"];
+  B --> C["RHEL on WSL (root)"];
+  C --> D["Azure CLI 2.67 (pinned)"];
+  C --> E["OpenShift CLI (oc, kubectl)"];
+  C --> F["~/deploymentscripts"];
+  C --> G["~/ocadmin"];
 ```
 
 > [!TIP]  
