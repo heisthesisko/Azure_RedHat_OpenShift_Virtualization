@@ -167,9 +167,9 @@ chmod +x centralcluster.sh
 > [!NOTE]
 > Now for future administration steps you can easily login in to those clusters by running the script
 >
-> ```bash
-./centralcluster.sh
-```
+> ```bash 
+> ./centralcluster.sh
+> ```
 
 
 
