@@ -59,6 +59,26 @@ Your output should look like this:
 
 # Unblocking Channel update
 
+1. From your Admin Node run the following command:
+
+```bash
+az aro update --name aro-contoso-virt --resource-group ContosoAroVirtDemo --upgradeable-to 4.18.24
+```
+![Module 2 Section 1 imageJ](assets/images/mod02/OCPConsole-010.png)
+
+> [!NOTE]
+> The command takes a minute or two to execute. Once finished you will see some output in the Admin node console and return to a normal prompt waiting for input.
+
+2. The command will start the upgrade process to unblock the cluster upgrade, typically this will take a few minutes and you will see the portal transition a few times until the cluster is ready to update.
+
+Initial view after command succeeds
+
+![Module 2 Section 1 imageK](assets/images/mod02/OCPConsole-011.png)
+
+View that Cluster is now ready to update to next version
+
+![Module 2 Section 1 imageK](assets/images/mod02/OCPConsole-012.png)
+
 
 
 
