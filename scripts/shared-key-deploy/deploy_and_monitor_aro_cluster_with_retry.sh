@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEPLOY_SCRIPT="./build_aro_cluster_sharedkey.sh"
+DEPLOY_SCRIPT="./build_aro_cluster_sharedkey_ver_001.sh"
 MAX_RETRIES=3
 RETRY_DELAY=60  # in seconds
 LOG_FILE="aro_deployment_$(date +%Y%m%d_%H%M%S).log"
