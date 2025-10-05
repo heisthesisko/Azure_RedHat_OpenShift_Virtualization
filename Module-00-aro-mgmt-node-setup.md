@@ -2,7 +2,9 @@
 
 > [!IMPORTANT]  
 > Depending on your companies security policies shared key access may be prohibited, which is the default deployment process for ARO clusters. Currently in preview is the ability to deploy ARO clusters with managed identities.
+> 
 > The steps to deploy the ARO management node ensures that scripts for both shared key access and managed identities will deploy.
+> 
 > Managed Identities use a preview of aro extension that is only supported with az cli version 2.67, current Cloud Shell version in the Azure Portal, VS Code and WSL2 is 2.77, thus the steps below pin the cli version to 2.67 to ensure compatibility. 
 
 ---
