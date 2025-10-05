@@ -6,8 +6,29 @@
 4. Launch upgrade via the OC portal
 5. Create oc admin login scripts to be ease administration in later modules
 
-> [!NOTE] 
-> The modules in this repository will guide through the following workflow
+```mermaid
+flowchart TD
+  A[Start: ARO cluster created] --> B[Log in to OpenShift console]
+
+  subgraph Portal path
+    B --> C[Update cluster channel in console]
+    E[Launch upgrade from console]
+  end
+
+  subgraph CLI path
+    D[Unblock minor upgrade via Azure CLI workflow]
+    F[Create oc admin login scripts]
+  end
+
+  C --> D --> E --> F --> G[End]
+
+  %% Styling (kept minimal and GitHub-safe)
+  classDef action fill:#eef,stroke:#88a,stroke-width:1px;
+  class A,B,C,D,E,F,G action;
+```
+
+> [!CAUTION] 
+> The steps in this module show how to unblock cluster upgrades path. It is recommended to understand the reasons why an upgrade is blocked, such as a potential security update as an example in an upstream channel. Proceed with caution.
 
 ## Logging into OCP console after ARO cluster has been created
 
