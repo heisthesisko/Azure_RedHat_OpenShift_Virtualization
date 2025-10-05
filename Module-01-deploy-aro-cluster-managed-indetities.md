@@ -30,10 +30,10 @@ az account set --subscription "$SUB_ID"
 
 ## 2) Folder Layout on the aro-mgmt-node
 
-We'll place all assets in `~/aro_managedid_deploy`.
+We'll place all assets in `~/deploymentscripts`.
 
 ```
-~/aro_managedid_deploy/
+~/deploymentscripts/
 ├── build_aro_cluster_managedid_preview_ver_001.sh
 ├── deploy_and_monitor_aro_cluster_with_retry.sh
 ├── pull-secret.txt
@@ -47,11 +47,11 @@ We'll place all assets in `~/aro_managedid_deploy`.
 Run the following **download script** to create the folder and fetch all artifacts into it.
 
 ```bash
-cat > ~/aro_managedid_deploy/download_aro_assets.sh <<'EOF'
+cat > ~/deploymentscripts/download_aro_assets.sh <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 
-DEST="${HOME}/aro_managedid_deploy"
+DEST="${HOME}/deploymentscripts"
 mkdir -p "${DEST}"
 cd "${DEST}"
 
@@ -77,8 +77,8 @@ echo "✅ All assets downloaded."
 echo "➡️  Next: Update pull-secret.txt with your Red Hat pull secret JSON."
 EOF
 
-chmod +x ~/aro_managedid_deploy/download_aro_assets.sh
-~/aro_managedid_deploy/download_aro_assets.sh
+chmod +x ~/deploymentscripts/download_aro_assets.sh
+~/deploymentscripts/download_aro_assets.sh
 ```
 
 > **IMPORTANT:** Open `pull-secret.txt` and replace its contents with your **actual** Red Hat pull secret JSON, then save.
@@ -86,14 +86,6 @@ chmod +x ~/aro_managedid_deploy/download_aro_assets.sh
 ---
 
 ## 4) Deploy the ARO Cluster (Managed Identities)
-
-### Option A — Direct Deployment
-Run the main deployment script (interactive prompts for RG/Cluster name/Region/SKUs):
-
-```bash
-cd ~/aro_managedid_deploy
-./build_aro_cluster_managedid_preview_ver_001.sh
-```
 
 What it does (high level):
 - Installs the **ARO preview CLI extension** from the local `.whl` file.
@@ -103,17 +95,12 @@ What it does (high level):
 - Creates **managed identities** (cluster + operator identities) and assigns required **roles/scopes**.
 - Reads your **pull-secret.txt** and runs `az aro create` with `--enable-managed-identity` and operator workload identities.
 - Waits for **provisioningState = Succeeded**.
-
-### Option B — With Automatic Retries
-Use the wrapper to retry up to 3 times with a wait between attempts:
+> The wrapper streams logs to a timestamped file like `aro_deployment_YYYYmmdd_HHMMSS.log` in the working directory.s
 
 ```bash
-cd ~/aro_managedid_deploy
+cd ~/deploymentscripts
 ./deploy_and_monitor_aro_cluster_with_retry.sh
 ```
-
-> The wrapper streams logs to a timestamped file like `aro_deployment_YYYYmmdd_HHMMSS.log` in the working directory.
-
 ---
 
 ## 5) Validate the Deployment
