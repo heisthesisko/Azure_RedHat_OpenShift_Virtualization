@@ -44,11 +44,11 @@ The install process will start and follow any additional workflow requests if ne
 
 ![Module 3 Section 1 imageH](assets/images/mod03/InstallOperators-008.png)
 
-2. Select or change values for your installation, in our case we will leave everything at the deafult settings and values. Click Install at the top
+2. Select or change values for your installation, in our case we will leave everything at the default settings and values. Click Install at the top
 
 ![Module 3 Section 1 imageI](assets/images/mod03/InstallOperators-009.png)
 
-3. FIll out the workflow form, in our case leaving the default values, click install at the top
+3. Fill out the workflow form, in our case leaving the default values, click install at the top
 
 ![Module 3 Section 1 imageJ](assets/images/mod03/InstallOperators-010.png)
 
@@ -70,4 +70,38 @@ Once you create the first fork-lift controller you can navigate to the Details t
 ![Module 3 Section 1 imageO](assets/images/mod03/InstallOperators-015.png)
 
 ## Installing Virtualization Operator
+
+1. Go to Operators->Operator Hub. In the search control, type virt, several options appear, choose OpenShift Virtualization tile to launch the pop-up window
+
+![Module 3 Section 1 imageP](assets/images/mod03/InstallOperators-016.png)
+
+2. Select or change values for your installation, in our case we will leave everything at the default settings and values. Click Install at the top
+
+![Module 3 Section 1 imageQ](assets/images/mod03/InstallOperators-017.png)
+
+3. Fill out the workflow form, in our case leaving the default values, click install at the bottom
+
+![Module 3 Section 1 imageR](assets/images/mod03/InstallOperators-018.png)
+![Module 3 Section 1 imageS](assets/images/mod03/InstallOperators-019.png)
+
+As part of the workflow you wil need to Create HyperConverged, click to proceed
+
+![Module 3 Section 1 imageT](assets/images/mod03/InstallOperators-020.png)
+
+Fill out the form, in our case leaving all values at default, scroll to the bottom an click Create to proceed:
+
+![Module 3 Section 1 imageU](assets/images/mod03/InstallOperators-021.png)
+![Module 3 Section 1 imageV](assets/images/mod03/InstallOperators-022.png)
+
+You will see the operator will take some time to install (five minutes):
+
+![Module 3 Section 1 imageW](assets/images/mod03/InstallOperators-023.png)
+
+Once completed you can see the status in the Home Overview:
+
+![Module 3 Section 1 imageX](assets/images/mod03/InstallOperators-024.png)
+
+
+
+
 
