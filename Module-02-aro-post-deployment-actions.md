@@ -126,7 +126,7 @@ View from the Home Overview blade of the upgrade progress
 >
 > Until you see the Cluster has been upgraded to the desired version, it is recommend not to perform any additional operations against the cluster.
 
-Now our cluster is ready to add the Virtualization and Migration Tool for Virtualization operators.
+Now our cluster is ready to add the Virtualization and Migration Tool operators.
 
 ![Module 2 Section 1 imageS](assets/images/mod02/OCPConsole-019.png)
 
