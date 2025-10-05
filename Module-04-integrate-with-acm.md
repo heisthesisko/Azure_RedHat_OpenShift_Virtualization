@@ -73,9 +73,23 @@ sequenceDiagram
 
 ![Module 4 Step 6 imageA](assets/images/mod04/ImportCluster-007.png)
 
-## Step 9 On the Admin Node, cd directories to the adminoc directory
-## Step 10 Run the centralcluster.sh to log into the central cluster
-## Step 11 Once logged into the central cluster, using vi, create a newfile called centralimport.sh, copy the base 64 content from the Copy command from previous step
-## Step 12 Ensure bash file is executable using chmod +x
-## Step 13 Run the centralimport.sh file
+## Step 7 On the Admin Node, cd directories to the adminoc directory, run the centralcluster.sh to log into the central cluster.
+
+![Module 4 Step 7 imageA](assets/images/mod04/ImportCluster-008.png)
+
+## Step 8 Once logged into the central cluster, using vi, create a newfile called centralimport.sh, paste the base 64 content from the Copy command from step 6.
+
+![Module 4 Step 8 imageA](assets/images/mod04/ImportCluster-009.png)
+![Module 4 Step 8 imageB](assets/images/mod04/ImportCluster-010.png)
+![Module 4 Step 8 imageC](assets/images/mod04/ImportCluster-011.png)
+
+## Step 9 Ensure bash file is executable using chmod +x centralimport.sh
+
+![Module 4 Step 9 imageA](assets/images/mod04/ImportCluster-012.png)
+
+
+## Step 10 Run the centralimport.sh file
+
+![Module 4 Step 10 imageA](assets/images/mod04/ImportCluster-013.png)
+
 ## Step 14 Back in the Hub cluster under All clusters, you should now see that your cluster has been imported.
