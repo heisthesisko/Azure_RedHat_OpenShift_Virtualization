@@ -38,12 +38,16 @@ sequenceDiagram
     %% Notes for training defaults
     Note over Hub,Student: Steps 5, 6, and 8 use training defaults (default cluster set, no labels, no automation template)
 ```
+
 > [!TIP]
 > Ensure that you completed the post deployment actions for oc login to ease the effort to importing the cluster into ACM
 
 # Steps to import OpenShift cluster into ACM
 
 ## Step 1 Log into the hub cluster OCP portal, go to all clusters
+
+![Module 4 Step 1 image](assets/images/mod04/ImportCluster-001.png)
+
 ## Step 2 Under Cluster list, if no other clusters have imported you should see local-cluster, which is the cluster that has the ACM operator installed
 ## Step 3 To the right of the Search box, you should see a Import Cluster control, click the button to launch the Import form
 ## Step 4 For training purposes you can choose default for Cluster set
