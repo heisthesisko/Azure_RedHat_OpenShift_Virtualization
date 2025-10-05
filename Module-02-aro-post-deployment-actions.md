@@ -93,6 +93,22 @@ View that Cluster is now ready to update to next version
 
 ![Module 2 Section 1 imageO](assets/images/mod02/OCPConsole-015.png)
 
+4. The cluster upgrade time varies depending on number of nodes in the cluster and other variables, typically the six node cluster will tale about 45 minutes to fully update.
+
+View from Administration blade the progress of the upgrade
+
+![Module 2 Section 1 imageP](assets/images/mod02/OCPConsole-016.png)
+
+View from the Home Overview blade of the upgrade progress
+
+![Module 2 Section 1 imageQ](assets/images/mod02/OCPConsole-017.png)
+
+> [!Note] it is not uncommon to see status warnings such as the control plane being degraded, this is normal as the cluster is updated. Eventually the alert will clear and status will return to healthy.
+> 
+> ![Module 2 Section 1 imageR](assets/images/mod02/OCPConsole-018.png)
+
+
+
 
 
 
