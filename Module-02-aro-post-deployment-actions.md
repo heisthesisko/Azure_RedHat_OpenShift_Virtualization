@@ -1,4 +1,4 @@
-# Module workflow Flowchart
+# Module Workflow
 
 1. Logging into OCP console after ARO cluster has been created
 2. Update the ocp version channel in via the portal
