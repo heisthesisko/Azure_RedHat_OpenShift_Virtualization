@@ -7,7 +7,7 @@
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Student as Student engineer
+    actor Student as ARO Engineer
     participant Hub as Hub portal (ACM)
     participant Clipboard as Clipboard
     participant Admin as Admin node
