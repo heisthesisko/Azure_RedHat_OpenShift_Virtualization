@@ -72,7 +72,7 @@ curl -fsSL -o pull-secret.txt \
 curl -fsSL -o aro-1.0.12-py2.py3-none-any.whl \
   https://raw.githubusercontent.com/heisthesisko/Azure_RedHat_OpenShift_Virtulization/refs/heads/main/scripts/managedID-deploy/aro-1.0.12-py2.py3-none-any.whl
 
-chmod +x build_aro_cluster_managedid_preview_ver_001.sh deploy_and_monitor_aro_cluster_with_retry.sh
+chmod +x build_aro_cluster_sharedkey_ver_001.sh deploy_and_monitor_aro_cluster_with_retry.sh
 
 echo "✅ All assets downloaded."
 echo "➡️  Next: Update pull-secret.txt with your Red Hat pull secret JSON."
