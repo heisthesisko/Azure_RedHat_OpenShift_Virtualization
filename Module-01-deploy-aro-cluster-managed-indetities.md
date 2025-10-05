@@ -137,38 +137,41 @@ az aro show -g "$RG" -n "$CLUSTER" --query 'consoleProfile.consoleURL' -o tsv
 ### 7.1 Flowchart — End-to-End
 ```mermaid
 flowchart TD
-    A[Start on aro-mgmt-node] --> B[Azure CLI ≥ 2.67.0 & az login]
-    B --> C[Download assets (scripts + whl + pull-secret placeholder)]
-    C --> D[Update pull-secret.txt with RH pull secret]
-    D --> E{Run deployment}
-    E -->|Direct| F[build_aro_cluster_managedid_preview_ver_001.sh]
-    E -->|With retries| G[deploy_and_monitor_aro_cluster_with_retry.sh]
-    F --> H{Provision Succeeded?}
-    G --> H
-    H -->|Yes| I[Validate with az aro show/list-credentials]
-    H -->|No| J[Review logs & retry]
+  A[Start on aro mgmt node] --> B[Azure CLI >= 2.67.0 and az login]
+  B --> C[Download assets: scripts wheel pull secret]
+  C --> D[Edit pull-secret.txt with RH secret]
+  D --> E{Run deployment}
+  E -->|Direct| F[build_aro_cluster_managedid_preview_ver_001.sh]
+  E -->|With retries| G[deploy_and_monitor_aro_cluster_with_retry.sh]
+  F --> H{Provision succeeded?}
+  G --> H
+  H -->|Yes| I[Validate with az aro show and list-credentials]
+  H -->|No| J[Review logs and retry]
 ```
 
 ### 7.2 Sequence — Scripts & Azure
 ```mermaid
 sequenceDiagram
-    participant User
-    participant Build as build_aro_cluster_managedid_preview_ver_001.sh
-    participant Retry as deploy_and_monitor_aro_cluster_with_retry.sh
-    participant Azure
+  autonumber
+  participant User
+  participant Build as build_aro_cluster_managedid_preview_ver_001.sh
+  participant Retry as deploy_and_monitor_aro_cluster_with_retry.sh
+  participant Azure
 
-    User->>Build: Execute (interactive)
-    Build->>Azure: Register providers, create RG/VNet/Subnets
-    Build->>Azure: Create Managed Identities + Role Assignments
-    Build->>Azure: az aro create (managed identity + operator identities)
-    Azure-->>Build: Provisioning State (progress)
-    alt Failure path
-        User->>Retry: Execute wrapper
-        Retry->>Build: Invoke build script (Attempt 1..N)
-        Build->>Azure: Re-run provisioning steps
-        Azure-->>Retry: Status per attempt
-    end
-    Azure-->>User: Cluster Succeeded + Credentials
+  User->>Build: Execute interactive
+  Build->>Azure: Register providers and create networking
+  Build->>Azure: Create managed identities and role assignments
+  Build->>Azure: az aro create with managed identities
+  Azure-->>Build: Provisioning state updates
+
+  alt failure
+    User->>Retry: Run wrapper
+    Retry->>Build: Attempt 1..N
+    Build->>Azure: Re-run provisioning steps
+    Azure-->>Retry: Status per attempt
+  end
+
+  Azure-->>User: Cluster succeeded and credentials
 ```
 ---
 
