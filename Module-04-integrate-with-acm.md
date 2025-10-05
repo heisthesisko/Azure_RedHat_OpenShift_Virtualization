@@ -92,4 +92,6 @@ sequenceDiagram
 
 ![Module 4 Step 10 imageA](assets/images/mod04/ImportCluster-013.png)
 
-## Step 14 Back in the Hub cluster under All clusters, you should now see that your cluster has been imported.
+## Step 11 Back on the Hub cluster under All clusters, you should now see that your cluster has been imported.
+
+![Module 4 Step 11 imageA](assets/images/mod04/ImportCluster-014.png)
