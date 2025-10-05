@@ -77,7 +77,7 @@ Initial view after command succeeds
 
 View that Cluster is now ready to update to next version
 
-![Module 2 Section 1 imageK](assets/images/mod02/OCPConsole-012.png)
+![Module 2 Section 1 imageL](assets/images/mod02/OCPConsole-012.png)
 
 
 
