@@ -7,6 +7,29 @@ Repository for guides and scripts to deploy ARO Virtualization clusters.
 > 
 > ARO clusters that are upgraded to OCP version 4.19 channel can upgrade to Standard_DSv6 VM SKU's which support nvme drives
 
+```mermaid
+flowchart
+ A[Deploy ARO management node] --> B{Choose deployment method}
+
+  B -->|Managed identity| C[Deploy ARO cluster with managed identity]
+  B -->|Shared key access| D[Deploy ARO cluster with shared key access]
+
+  C --> E[ARO cluster deployed]
+  D --> E
+
+  %% Post-deploy actions (can be done in parallel)
+  E --> F[Deploy operators]
+  E --> G[Integrate cluster with ACM]
+  E --> H[Integrate cluster with VMware]
+
+  %% Workload path after post-deploy setup
+  F --> I{Workload path}
+  G --> I
+  H --> I
+
+  I -->|Migrate VMs from source| J[Migrate VMs]
+  I -->|Deploy greenfield VMs| K[Deploy greenfield VMs]
+```
 ## References
 
 - [ARO Quickstart CLI Guide](https://review.learn.microsoft.com/en-us/azure/openshift/create-cluster?branch=main&pivots=aro-azure-cli)
