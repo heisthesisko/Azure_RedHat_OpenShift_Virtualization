@@ -85,7 +85,9 @@ chmod +x ~/deploymentscripts/download_aro_assets.sh
 > [!IMPORTANT]
 > Please obtain your Red Hat pull secret from https://console.redhat.com/openshift/install/pull-secret
 >
-> Open `pull-secret.txt` and replace its contents with your **actual** Red Hat pull secret JSON, then save. Use your favorite editor such as "vi" that is already installed on your RHEL WSL2 image.
+> Open `pull-secret.txt` and replace its contents with your **actual** Red Hat pull secret JSON, then save.
+> 
+> Use your favorite editor such as "vi" that is already installed on your RHEL WSL2 image.
 
 ---
 
