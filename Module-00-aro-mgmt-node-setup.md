@@ -20,7 +20,29 @@ flowchart LR
   C --> F["~/deploymentscripts"];
   C --> G["~/ocadmin"];
 ```
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Win as Windows 11 (PowerShell)
+    participant WSL as WSL2 Engine
+    participant RHEL as RHEL WSL (root)
+    participant MS as Packages Repo
+    participant OCM as OpenShift Mirror
 
+    Win->>WSL: Enable WSL + VMP
+    Win->>WSL: Set default version 2
+    Win->>WSL: Import RHEL rootfs
+    Note right of Win: wsl --import RHEL "C:\WSL\RHEL" "C:\WSL\RHEL\rhel-rootfs.tar" --version 2
+    Win->>RHEL: Launch "wsl -d RHEL"
+    RHEL->>RHEL: dnf update + base tools
+    RHEL->>RHEL: (optional) subscription-manager attach
+    RHEL->>MS: Add azure-cli yum repo
+    RHEL->>MS: Install azure-cli 2.67.x (pin)
+    RHEL->>RHEL: Lock azure-cli from upgrades
+    RHEL->>OCM: Download oc/kubectl tarball
+    RHEL->>RHEL: Install to ~/.local/bin and update PATH
+    RHEL-->>RHEL: Verify az/oc/kubectl versions
+```
 > [!TIP]  
 > Work in **Windows Terminal** (PowerShell) for host tasks and the **RHEL WSL shell** for Linux tasks. Keep both panes open.
 
@@ -196,30 +218,6 @@ oc version --client
 ---
 
 ## End-to-End Sequence (what happens, in order)
-
-```mermaid
-sequenceDiagram
-    autonumber
-    participant Win as Windows 11 (PowerShell)
-    participant WSL as WSL2 Engine
-    participant RHEL as RHEL WSL (root)
-    participant MS as Packages Repo
-    participant OCM as OpenShift Mirror
-
-    Win->>WSL: Enable WSL + VMP
-    Win->>WSL: Set default version 2
-    Win->>WSL: Import RHEL rootfs
-    Note right of Win: wsl --import RHEL "C:\WSL\RHEL" "C:\WSL\RHEL\rhel-rootfs.tar" --version 2
-    Win->>RHEL: Launch "wsl -d RHEL"
-    RHEL->>RHEL: dnf update + base tools
-    RHEL->>RHEL: (optional) subscription-manager attach
-    RHEL->>MS: Add azure-cli yum repo
-    RHEL->>MS: Install azure-cli 2.67.x (pin)
-    RHEL->>RHEL: Lock azure-cli from upgrades
-    RHEL->>OCM: Download oc/kubectl tarball
-    RHEL->>RHEL: Install to ~/.local/bin and update PATH
-    RHEL-->>RHEL: Verify az/oc/kubectl versions
-```
 
 ---
 
