@@ -2,26 +2,25 @@
 
 ```mermaid
 sequenceDiagram
-  autonumber
   participant Admin
-  participant vCenter as VMware vCenter/ESXi
-  participant MTV as MTV (Migration Toolkit for Virtualization)
-  participant ARO as ARO Cluster (OpenShift Virtualization)
+  participant VMware
+  participant MTV
+  participant ARO
 
-  Admin->>vCenter: Ensure provider connectivity\n(FW/DNS/ports reachable)
-  Admin->>MTV: Add VMware provider\n(URL, credentials, thumbprint)
-  MTV->>vCenter: Validate connection & discover inventory
-  vCenter-->>MTV: OK (clusters, networks, VMs)
+  Admin->>VMware: Verify provider connectivity
+  Admin->>MTV: Add VMware provider (URL, creds)
+  MTV->>VMware: Validate connection
+  VMware-->>MTV: Inventory OK
 
-  Admin->>MTV: Create Migration Plan\n(choose VMs, target ns/storage)
-  MTV->>ARO: Assess target resources & mappings
-  MTV-->>Admin: Report dependencies\n(networks, storage, OS tools)
+  Admin->>MTV: Create migration plan (select VMs)
+  MTV->>ARO: Check target resources
+  MTV-->>Admin: Report dependencies
+  Admin->>MTV: Resolve dependencies
 
-  Admin->>MTV: Resolve dependencies\n(map networks/storage, pre-reqs)
-  Admin->>MTV: Start Migration
-  MTV->>vCenter: Orchestrate data copy (warm/cold)
-  vCenter-->>MTV: Snapshot/export disks & metadata
-  MTV->>ARO: Import disks; create KubeVirt VM defs
-  ARO-->>MTV: VMs created/started
+  Admin->>MTV: Start migration
+  MTV->>VMware: Copy data (warm/cold)
+  VMware-->>MTV: Snapshots / disks exported
+  MTV->>ARO: Import disks and create VMs
+  ARO-->>MTV: VMs created / started
   MTV-->>Admin: Migration complete
 ```
