@@ -98,6 +98,30 @@ What it does (high level):
 - Waits for **provisioningState = Succeeded**.
 - The wrapper streams logs to a timestamped file like `aro_deployment_YYYYmmdd_HHMMSS.log` in the working directory.s
 
+## End-to-End Sequence (what happens, in order)
+```mermaid
+sequenceDiagram
+  autonumber
+  participant User
+  participant Build as build_aro_cluster_managedid_preview_ver_001.sh
+  participant Retry as deploy_and_monitor_aro_cluster_with_retry.sh
+  participant Azure
+
+  User->>Build: Execute interactive
+  Build->>Azure: Register providers and create networking
+  Build->>Azure: Create managed identities and role assignments
+  Build->>Azure: az aro create with managed identities
+  Azure-->>Build: Provisioning state updates
+
+  alt failure
+    User->>Retry: Run wrapper
+    Retry->>Build: Attempt 1..N
+    Build->>Azure: Re-run provisioning steps
+    Azure-->>Retry: Status per attempt
+  end
+
+  Azure-->>User: Cluster succeeded and credentials
+```
 ```bash
 cd ~/deploymentscripts
 ./deploy_and_monitor_aro_cluster_with_retry.sh
@@ -140,11 +164,7 @@ az aro show -g "$RG" -n "$CLUSTER" --query 'consoleProfile.consoleURL' -o tsv
 - **Long waits:** ARO provisioning typically takes 30–45+ minutes; network and region load can affect timing.
 - **Retry wrapper:** Use `deploy_and_monitor_aro_cluster_with_retry.sh` to handle transient failures.
 
----
-
-## 7) Visual Guides
-
-### 7.1 Flowchart — End-to-End
+## Flowchart — End-to-End
 ```mermaid
 flowchart TD
   A[Start on aro mgmt node] --> B[Azure CLI >= 2.67.0 and az login]
@@ -159,30 +179,6 @@ flowchart TD
   H -->|No| J[Review logs and retry]
 ```
 
-### 7.2 Sequence — Scripts & Azure
-```mermaid
-sequenceDiagram
-  autonumber
-  participant User
-  participant Build as build_aro_cluster_managedid_preview_ver_001.sh
-  participant Retry as deploy_and_monitor_aro_cluster_with_retry.sh
-  participant Azure
-
-  User->>Build: Execute interactive
-  Build->>Azure: Register providers and create networking
-  Build->>Azure: Create managed identities and role assignments
-  Build->>Azure: az aro create with managed identities
-  Azure-->>Build: Provisioning state updates
-
-  alt failure
-    User->>Retry: Run wrapper
-    Retry->>Build: Attempt 1..N
-    Build->>Azure: Re-run provisioning steps
-    Azure-->>Retry: Status per attempt
-  end
-
-  Azure-->>User: Cluster succeeded and credentials
-```
 ---
 
 ## Appendix — Notes
