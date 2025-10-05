@@ -130,6 +130,9 @@ Now our cluster is ready to add the Virtualization and Migration Tool operators.
 
 ![Module 2 Section 1 imageS](assets/images/mod02/OCPConsole-019.png)
 
+> [!NOTE]
+> You can see in the image above we have upgraded to 4.18.24 and an additional version channel is now available, 4.19 is required for Azure VM SKU's DSv6 family and you would upgrade using the same procedures we just performed.
+
 ## Create oc admin login scripts to be ease administration in later modules
 
 > [!TIP]
@@ -170,8 +173,3 @@ chmod +x centralcluster.sh
 > ```bash 
 > ./centralcluster.sh
 > ```
-
-
-
-
-
