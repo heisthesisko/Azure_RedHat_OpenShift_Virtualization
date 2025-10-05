@@ -1,4 +1,4 @@
-# Module 01 — Deploy ARO Cluster (Managed Identities)
+# Module 01a — Deploy ARO Cluster (Managed Identities)
 
 > [!NOTE]   
 > Deploy an Azure Red Hat OpenShift (ARO) cluster using **managed identities** using `aro-mgmt-node` from Module-00 with the provided scripts and resources.
