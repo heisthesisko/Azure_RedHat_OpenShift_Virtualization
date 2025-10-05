@@ -1,4 +1,4 @@
-# Module 01 — Deploy ARO Cluster (Shared Access Key - default ARO deployment model)
+# Module 01b — Deploy ARO Cluster (Shared Access Key - default ARO deployment model)
 
 > [!NOTE]   
 > Deploy an Azure Red Hat OpenShift (ARO) cluster using **Shared Access Key** using `aro-mgmt-node` from Module-00 with the provided scripts and resources.
