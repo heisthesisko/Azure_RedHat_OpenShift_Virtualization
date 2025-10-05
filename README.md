@@ -7,9 +7,11 @@ Repository for guides and scripts to deploy ARO Virtualization clusters.
 > 
 > ARO clusters that are upgraded to OCP version 4.19 channel can upgrade to Standard_DSv6 VM SKU's which support nvme drives
 
+> [!NOTE] 
+> The modules in this repository will guide through the following workflow
 ```mermaid
 flowchart
- A[Deploy ARO management node] --> B{Choose deployment method}
+ A[Deploy ARO management node (Mod-00)] --> B{Choose deployment method}
 
   B -->|Managed identity| C[Deploy ARO cluster with managed identity]
   B -->|Shared key access| D[Deploy ARO cluster with shared key access]
