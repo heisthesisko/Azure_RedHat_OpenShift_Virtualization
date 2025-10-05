@@ -13,8 +13,8 @@ Repository for guides and scripts to deploy ARO Virtualization clusters.
 flowchart
  A[Mod-00: Deploy ARO management node] --> B{Choose deployment method}
 
-  B -->|Managed identity| C[Deploy ARO cluster with managed identity]
-  B -->|Shared key access| D[Deploy ARO cluster with shared key access]
+  B -->|Managed identity| C[Mod-01a: Deploy ARO cluster with managed identity]
+  B -->|Shared key access| D[Mod-01b:Deploy ARO cluster with shared key access]
 
   C --> E[ARO cluster deployed]
   D --> E
