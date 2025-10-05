@@ -22,9 +22,6 @@ flowchart TD
 
   C --> D --> E --> F --> G[End]
 
-  %% Styling (kept minimal and GitHub-safe)
-  classDef action fill:#eef,stroke:#88a,stroke-width:1px;
-  class A,B,C,D,E,F,G action;
 ```
 
 > [!CAUTION] 
