@@ -16,21 +16,24 @@ flowchart
   B -->|Managed identity| C[Mod-01a: Deploy ARO cluster with managed identity]
   B -->|Shared key access| D[Mod-01b:Deploy ARO cluster with shared key access]
 
-  C --> E[ARO cluster deployed]
+  C --> E[Mod-02: Verify ARO cluster deployed and Post deployment actions]
   D --> E
 
   %% Post-deploy actions (can be done in parallel)
-  E --> F[Deploy operators]
-  E --> G[Integrate cluster with ACM]
-  E --> H[Integrate cluster with VMware]
+  E --> F[Mod-03: Deploy operators]
+  E --> G[Mod-04: Integrate cluster with ACM]
+  E --> H[Mod-05: Integrate cluster with VMware]
 
   %% Workload path after post-deploy setup
   F --> I{Workload path}
   G --> I
   H --> I
 
-  I -->|Migrate VMs from source| J[Migrate VMs]
-  I -->|Deploy greenfield VMs| K[Deploy greenfield VMs]
+  I -->|Mod-06: Migrate VMs from source| J[Migrate VMs]
+  I -->|Mod-07: Deploy greenfield VMs| K[Deploy greenfield VMs]
+  %% Final step for both paths
+  J --> L[Enable additional Azure services]
+  K --> L
 ```
 ## References
 
