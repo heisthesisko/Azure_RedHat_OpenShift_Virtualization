@@ -94,25 +94,50 @@ On the portal you should see the cluster is pending import, Click the Copy the c
 
 On the Admin Node, cd directories to the adminoc directory, run the centralcluster.sh to log into the central cluster.
 
+```bash
+cd adminoc
+./centralcluster.sh
+```
+
+
 ![Module 4 Step 7 imageA](assets/images/mod04/ImportCluster-008.png)
 
 ## Step 8
 
 Once logged into the central cluster, using vi, create a newfile called centralimport.sh, paste the base 64 content from the Copy command from step 6.
 
+```bash
+vi centalimport.sh
+```
+> [!TIP]
+> Using vi, once you are in the editor, pressing "insert" will allow you to edit the file contents, here you can then paste your content. If the clipboard content is no longer the base 64 content from the Copy Command from ACM portal, you can simply go back to the portal and copy the command content again and paste into the editor. Once the paste is complete, press esc button, then type :wq! to write to the file and automatically close the file.
+
+
 ![Module 4 Step 8 imageA](assets/images/mod04/ImportCluster-009.png)
+
 ![Module 4 Step 8 imageB](assets/images/mod04/ImportCluster-010.png)
+
 ![Module 4 Step 8 imageC](assets/images/mod04/ImportCluster-011.png)
 
 ## Step 9
 
 Ensure bash file is executable using chmod +x centralimport.sh
 
+```bash
+chmod +x centralimport.sh
+```
+
+
 ![Module 4 Step 9 imageA](assets/images/mod04/ImportCluster-012.png)
 
 ## Step 10
 
 Run the centralimport.sh file
+
+```bash
+./centralimport.sh
+```
+
 
 ![Module 4 Step 10 imageA](assets/images/mod04/ImportCluster-013.png)
 
