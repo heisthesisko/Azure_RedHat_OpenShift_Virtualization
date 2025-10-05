@@ -41,19 +41,19 @@ Your output should look like this:
 
 ![Module 2 Section 1 imageE](assets/images/mod02/OCPConsole-005.png)
 
-5. Click on Cluster Settings in the Administration section of the Console, you will see in console that the current version is 4.17.27, you will also see an alert that the cluster should not be updated to the next minor version, which we must in order to enable the Virtualization Operator. Following steps will show how to unblock this to proceed to ocp version 4.18. 
+3. Click on Cluster Settings in the Administration section of the Console, you will see in console that the current version is 4.17.27, you will also see an alert that the cluster should not be updated to the next minor version, which we must in order to enable the Virtualization Operator. Following steps will show how to unblock this to proceed to ocp version 4.18. 
 
 ![Module 2 Section 1 imageF](assets/images/mod02/OCPConsole-006.png)
 
-6. Click on the pencil icon to configure our preferred upgrade channel. You will be presented with a pop up form to enter your channel
+4. Click on the pencil icon to configure our preferred upgrade channel. You will be presented with a pop up form to enter your channel
 
 ![Module 2 Section 1 imageG](assets/images/mod02/OCPConsole-007.png)
 
-7. We will target by typing in the form stable-4.18 and save.
+5. We will target by typing in the form stable-4.18 and save.
 
 ![Module 2 Section 1 imageH](assets/images/mod02/OCPConsole-008.png)
 
-8. You will now see in the console our Channel is set to stable-4.18, however we are blocked from going to 4.18.24
+6. You will now see in the console our Channel is set to stable-4.18, however we are blocked from going to 4.18.24
 
 ![Module 2 Section 1 imageI](assets/images/mod02/OCPConsole-009.png)
 
