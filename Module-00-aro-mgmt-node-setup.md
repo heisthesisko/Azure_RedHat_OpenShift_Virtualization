@@ -20,6 +20,7 @@ flowchart LR
   C --> F["~/deploymentscripts"];
   C --> G["~/ocadmin"];
 ```
+## End-to-End Sequence (what happens, in order)
 ```mermaid
 sequenceDiagram
     autonumber
@@ -216,8 +217,6 @@ oc version --client
 ```
 
 ---
-
-## End-to-End Sequence (what happens, in order)
 
 ---
 
