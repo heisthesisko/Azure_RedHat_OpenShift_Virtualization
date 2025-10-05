@@ -11,7 +11,7 @@ Repository for guides and scripts to deploy ARO Virtualization clusters.
 > The modules in this repository will guide through the following workflow
 ```mermaid
 flowchart
- A[Deploy ARO management node "(Mod-00)"] --> B{Choose deployment method}
+ A[Deploy ARO management node -Mod-00] --> B{Choose deployment method}
 
   B -->|Managed identity| C[Deploy ARO cluster with managed identity]
   B -->|Shared key access| D[Deploy ARO cluster with shared key access]
