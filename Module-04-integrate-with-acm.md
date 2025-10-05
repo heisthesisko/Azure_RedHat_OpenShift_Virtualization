@@ -50,35 +50,34 @@ sequenceDiagram
 
 ![Module 4 Step 1 imageB](assets/images/mod04/ImportCluster-002.png)
 
-## Step 2 Under Cluster list, if no other clusters have imported you should see local-cluster, which is the cluster that has the ACM operator installed
+> [!NOTE] 
+> Under Cluster list, if no other clusters have imported you should see local-cluster, which is the cluster that has the ACM operator installed
+
+## Step 2 To the right of the Search box, you should see a Import Cluster control, click the button to launch the Import form
 
 ![Module 4 Step 2 imageA](assets/images/mod04/ImportCluster-003.png)
 
-## Step 3 To the right of the Search box, you should see a Import Cluster control, click the button to launch the Import form
+## Step 3 For training purposes you can choose default for Cluster set
 
 ![Module 4 Step 3 imageA](assets/images/mod04/ImportCluster-004.png)
 
-## Step 4 For training purposes you can choose default for Cluster set
+## Step 4 Leave Additional labels blank for training purposes
 
 ![Module 4 Step 4 imageA](assets/images/mod04/ImportCluster-005.png)
 
-## Step 5 Leave Additional labels blank for training purposes
+## Step 5 For import mode we will choose "Run import commands manually", click next
 
 ![Module 4 Step 5 imageA](assets/images/mod04/ImportCluster-006.png)
 
-## Step 6 For import mode we will choose "Run import commands manually", click next
+## Step 6 Leave Automation template blank for training purposes, click next
 
 ![Module 4 Step 6 imageA](assets/images/mod04/ImportCluster-007.png)
 
-## Step 7 Leave Automation template blank for training purposes, click next
-
-![Module 4 Step 7 imageA](assets/images/mod04/ImportCluster-008.png)
-
-## Step 8 Review settings, if all looks as expected, click Generate command.
-## Step 9 On the portal you should see the cluster is pending import, Click the Copy the command button. This will paste the Base 64 content to your local clipboard we will use to generate the OC commands to import the cluster.
-## Step 10 On the Admin Node, cd directories to the adminoc directory
-## Step 11 Run the centralcluster.sh to log into the central cluster
-## Step 12 Once logged into the central cluster, using vi, create a newfile called centralimport.sh, copy the base 64 content from the Copy command from previous step
-## Step 13 Ensure bash file is executable using chmod +x
-## Step 14 Run the centralimport.sh file
-## Step 15 Back in the Hub cluster under All clusters, you should now see that your cluster has been imported.
+## Step 7 Review settings, if all looks as expected, click Generate command.
+## Step 8 On the portal you should see the cluster is pending import, Click the Copy the command button. This will paste the Base 64 content to your local clipboard we will use to generate the OC commands to import the cluster.
+## Step 9 On the Admin Node, cd directories to the adminoc directory
+## Step 10 Run the centralcluster.sh to log into the central cluster
+## Step 11 Once logged into the central cluster, using vi, create a newfile called centralimport.sh, copy the base 64 content from the Copy command from previous step
+## Step 12 Ensure bash file is executable using chmod +x
+## Step 13 Run the centralimport.sh file
+## Step 14 Back in the Hub cluster under All clusters, you should now see that your cluster has been imported.
