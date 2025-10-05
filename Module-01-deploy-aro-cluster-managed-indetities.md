@@ -32,12 +32,12 @@ az account set --subscription "$SUB_ID"
 
 We'll place all assets in `~/deploymentscripts`.
 
-```
-~/deploymentscripts/
-├── build_aro_cluster_managedid_preview_ver_001.sh
-├── deploy_and_monitor_aro_cluster_with_retry.sh
-├── pull-secret.txt
-└── aro-1.0.12-py2.py3-none-any.whl
+```mermaid
+flowchart TD
+  root[~/deploymentscripts] --> build[build_aro_cluster_managedid_preview_ver_001.sh]
+  root --> retry[deploy_and_monitor_aro_cluster_with_retry.sh]
+  root --> pull[pull-secret.txt]
+  root --> wheel[aro-1.0.12-py2.py3-none-any.whl]
 ```
 
 ---
@@ -95,13 +95,22 @@ What it does (high level):
 - Creates **managed identities** (cluster + operator identities) and assigns required **roles/scopes**.
 - Reads your **pull-secret.txt** and runs `az aro create` with `--enable-managed-identity` and operator workload identities.
 - Waits for **provisioningState = Succeeded**.
-> The wrapper streams logs to a timestamped file like `aro_deployment_YYYYmmdd_HHMMSS.log` in the working directory.s
+- The wrapper streams logs to a timestamped file like `aro_deployment_YYYYmmdd_HHMMSS.log` in the working directory.s
 
 ```bash
 cd ~/deploymentscripts
 ./deploy_and_monitor_aro_cluster_with_retry.sh
 ```
 ---
+
+### Option without retry wrapper — Direct Deployment
+
+Run the main deployment script (interactive prompts for RG/Cluster name/Region/SKUs):
+
+```bash
+cd ~/aro_managedid_deploy
+./build_aro_cluster_managedid_preview_ver_001.sh
+```
 
 ## 5) Validate the Deployment
 
