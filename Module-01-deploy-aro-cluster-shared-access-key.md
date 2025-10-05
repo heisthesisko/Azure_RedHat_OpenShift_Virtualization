@@ -70,7 +70,7 @@ curl -fsSL -o pull-secret.txt \
 
 # ARO extension wheel (use RAW URL, not the HTML 'blob' page)
 curl -fsSL -o aro-1.0.12-py2.py3-none-any.whl \
-  https://raw.githubusercontent.com/heisthesisko/Azure_RedHat_OpenShift_Virtulization/refs/heads/main/scripts/managedID-deploy/aro-1.0.12-py2.py3-none-any.whl
+  https://github.com/heisthesisko/Azure_RedHat_OpenShift_Virtulization/raw/refs/heads/main/scripts/shared-key-deploy/aro-1.0.12-py2.py3-none-any.whl
 
 chmod +x build_aro_cluster_sharedkey_ver_001.sh deploy_and_monitor_aro_cluster_with_retry.sh
 
