@@ -129,3 +129,49 @@ View from the Home Overview blade of the upgrade progress
 Now our cluster is ready to add the Virtualization and Migration Tool for Virtualization operators.
 
 ![Module 2 Section 1 imageS](assets/images/mod02/OCPConsole-019.png)
+
+## Create oc admin login scripts to be ease administration in later modules
+
+> [!TIP]
+> To ease switching between oc clusters for command line administration, create a separate bash script that automatically logs you into that cluster to execute oc commands against.
+
+On the Admin Node, switch to the /adminoc directory
+
+```bash
+cd adminoc/
+```
+
+Then create a bash file for each cluster you will manage such as centralcluster.sh
+
+```bash
+vi centralcluster.sh
+```
+Paste the following into the newly created file and save
+
+```bash
+# Set these to your cluster
+RG="ContosoAroVirtDemo"
+CLUSTER="aro-contoso-virt"
+
+# Get API URL and kubeadmin password from Azure
+API_URL=$(az aro show -g "$RG" -n "$CLUSTER" --query apiserverProfile.url -o tsv)
+KUBEADMIN_PW=$(az aro list-credentials -g "$RG" -n "$CLUSTER" --query kubeadminPassword -o tsv)
+
+# Log in
+oc login "$API_URL" -u kubeadmin -p "$KUBEADMIN_PW"
+```
+Ensure the script is executable
+```bash
+chmod +x centralcluster.sh
+```
+> [!NOTE]
+> Now for future administration steps you can easily login in to those clusters by running the script
+>
+> ```bash
+./centralcluster.sh
+```
+
+
+
+
+
