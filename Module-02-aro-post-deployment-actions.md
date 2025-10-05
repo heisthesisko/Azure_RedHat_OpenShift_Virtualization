@@ -103,19 +103,12 @@ View from the Home Overview blade of the upgrade progress
 
 ![Module 2 Section 1 imageQ](assets/images/mod02/OCPConsole-017.png)
 
-> [!Note] it is not uncommon to see status warnings such as the control plane being degraded, this is normal as the cluster is updated. Eventually the alert will clear and status will return to healthy.
-> 
+> [!NOTE] It is not uncommon to see status warnings such as the control plane being degraded, this is normal as the cluster is updated. Eventually the alert will clear and status will return to healthy.
+>
 > ![Module 2 Section 1 imageR](assets/images/mod02/OCPConsole-018.png)
+>
+> Until you see the Cluster has been upgraded to the desired version, it is recommend not to perform any additional operations against the cluster.
 
+Now our cluster is ready to add the Virtualization and Migration Tool for Virtualization operators.
 
-
-
-
-
-
-
-
-
-
-
-
+![Module 2 Section 1 imageS](assets/images/mod02/OCPConsole-019.png)
