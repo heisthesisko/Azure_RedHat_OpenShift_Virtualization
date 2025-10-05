@@ -32,7 +32,7 @@ flowchart
   I -->|Mod-06: Migrate VMs from source| J[Migrate VMs]
   I -->|Mod-07: Deploy greenfield VMs| K[Deploy greenfield VMs]
   %% Final step for both paths
-  J --> L[Enable additional Azure services]
+  J --> L[Mod-08: Enable additional Azure services]
   K --> L
 ```
 ## References
