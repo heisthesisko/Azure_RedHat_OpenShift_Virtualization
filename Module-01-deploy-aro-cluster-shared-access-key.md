@@ -98,8 +98,7 @@ What it does (high level):
 - Registers required **resource providers** (Microsoft.RedHatOpenShift, Network, Compute, Storage, Authorization).
 - Creates/uses a **Resource Group**.
 - Provisions **VNet**, **master/worker subnets**.
-- Creates **managed identities** (cluster + operator identities) and assigns required **roles/scopes**.
-- Reads your **pull-secret.txt** and runs `az aro create` with `--enable-managed-identity` and operator workload identities.
+- Reads your **pull-secret.txt** and runs `az aro create.
 - Waits for **provisioningState = Succeeded**.
 - The wrapper streams logs to a timestamped file like `aro_deployment_YYYYmmdd_HHMMSS.log` in the working directory.s
 
@@ -108,14 +107,13 @@ What it does (high level):
 sequenceDiagram
   autonumber
   participant User
-  participant Build as build_aro_cluster_managedid_preview_ver_001.sh
+  participant Build as build_aro_cluster_sharedkey_ver_001.sh
   participant Retry as deploy_and_monitor_aro_cluster_with_retry.sh
   participant Azure
 
   User->>Build: Execute interactive
   Build->>Azure: Register providers and create networking
-  Build->>Azure: Create managed identities and role assignments
-  Build->>Azure: az aro create with managed identities
+  Build->>Azure: az aro create
   Azure-->>Build: Provisioning state updates
 
   alt failure
@@ -138,8 +136,8 @@ cd ~/deploymentscripts
 Run the main deployment script (interactive prompts for RG/Cluster name/Region/SKUs):
 
 ```bash
-cd ~/aro_managedid_deploy
-./build_aro_cluster_managedid_preview_ver_001.sh
+cd ~/deploymentscripts
+./build_aro_cluster_sharedkey_ver_001.sh
 ```
 
 ## 5) Validate the Deployment
@@ -176,7 +174,7 @@ flowchart TD
   B --> C[Download assets: scripts wheel pull secret]
   C --> D[Edit pull-secret.txt with RH secret]
   D --> E{Run deployment}
-  E -->|Direct| F[build_aro_cluster_managedid_preview_ver_001.sh]
+  E -->|Direct| F[build_aro_cluster_sharedkey_ver_001.sh]
   E -->|With retries| G[deploy_and_monitor_aro_cluster_with_retry.sh]
   F --> H{Provision succeeded?}
   G --> H
