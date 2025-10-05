@@ -79,6 +79,24 @@ View that Cluster is now ready to update to next version
 
 ![Module 2 Section 1 imageL](assets/images/mod02/OCPConsole-012.png)
 
+# Launch upgrade via the OC portal
+
+1. While logged into the OpenShift Portal under Administration->Cluster Settings->Details, you can click on Select Version
+
+![Module 2 Section 1 imageM](assets/images/mod02/OCPConsole-013.png)
+
+2. We will keep the default value presented, however you can use the drop down to choose another version of 4.18 for your needs. Click on Update to launch the Cluster upgrade
+
+![Module 2 Section 1 imageN](assets/images/mod02/OCPConsole-014.png)
+
+3. The command will take a mitute or two to initiate, once started you will see at the top of the portal in a yellow bar the Cluster is updating from 4.17.27 to 4.18.24
+
+![Module 2 Section 1 imageO](assets/images/mod02/OCPConsole-015.png)
+
+
+
+
+
 
 
 
