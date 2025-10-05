@@ -57,7 +57,12 @@ sequenceDiagram
 
 ![Module 4 Step 2 imageA](assets/images/mod04/ImportCluster-003.png)
 
-## Step 3 Details form page. Enter the name you will refence the cluster to be imported by, in our case **contosocentralregion**. For training purposes you can choose **default** for Cluster set, Leave Additional Labels blank, and **Run import commands manually**, click next
+## Step 3 Details form page. Enter the name you will refence the cluster to be imported by, in our case **contosocentralregion**. 
+
+> [!CAUTION]
+> Cluster names adhere to RFC 1123 label must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character (e.g. 'my-name', or '123-abc', regex used for validation is '[a-z0-9]([-a-z0-9]*[a-z0-9])?')
+
+For training purposes you can choose **default** for Cluster set, Leave Additional Labels blank, and **Run import commands manually**, click next
 
 ![Module 4 Step 3 imageA](assets/images/mod04/ImportCluster-004.png)
 
