@@ -1,8 +1,4 @@
-> [!NOTE] 
-> The modules in this repository will guide through the following workflow
-
-
-Flowchart:
+# Module workflow Flowchart
 
 1. Logging into OCP console after ARO cluster has been created
 2. Update the ocp version channel in via the portal
@@ -10,8 +6,10 @@ Flowchart:
 4. Launch upgrade via the OC portal
 5. Create oc admin login scripts to be ease administration in later modules
 
+> [!NOTE] 
+> The modules in this repository will guide through the following workflow
 
-# Logging into OCP console after ARO cluster has been created
+## Logging into OCP console after ARO cluster has been created
 
 1. Get the ocp console url for the target cluster from the Azure portal ARO Clusters Blade
 
@@ -34,7 +32,7 @@ Your output should look like this:
 
 ![Module 2 Section 1 imageD](assets/images/mod02/OCPConsole-004.png)
 
-# Update the ocp version channel in via the portal
+## Update the ocp version channel in via the portal
 
 1. Once logged in you are brought into Overview pane of the Console, in the center of the screen ensure that you have a green check mark indicating a healthy status of the cluster. You may see Insights are disabled which is expected.
 2. You will navigate to the Administration tab on the left side of the console to set the ocp channel.
@@ -57,7 +55,7 @@ Your output should look like this:
 
 ![Module 2 Section 1 imageI](assets/images/mod02/OCPConsole-009.png)
 
-# Unblocking Channel update
+## Unblocking Channel update
 
 1. From your Admin Node run the following command:
 
@@ -79,7 +77,7 @@ View that Cluster is now ready to update to next version
 
 ![Module 2 Section 1 imageL](assets/images/mod02/OCPConsole-012.png)
 
-# Launch upgrade via the OC portal
+## Launch upgrade via the OC portal
 
 1. While logged into the OpenShift Portal under Administration->Cluster Settings->Details, you can click on Select Version
 
@@ -103,7 +101,8 @@ View from the Home Overview blade of the upgrade progress
 
 ![Module 2 Section 1 imageQ](assets/images/mod02/OCPConsole-017.png)
 
-> [!NOTE] It is not uncommon to see status warnings such as the control plane being degraded, this is normal as the cluster is updated. Eventually the alert will clear and status will return to healthy.
+> [!NOTE] 
+> It is not uncommon to see status warnings such as the control plane being degraded, this is normal as the cluster is updated. Eventually the alert will clear and status will return to healthy.
 >
 > ![Module 2 Section 1 imageR](assets/images/mod02/OCPConsole-018.png)
 >
