@@ -32,9 +32,4 @@ About 2 minutes later your VM is running:
 ![Module 7 Section 1 imageH](assets/images/mod07/CreateVMs-008.png)
 
 
-## Creating a custom VM using your own ISO
-
-
-
-
-
+## Creating a custom VM using your own ISO (content coming soon)
