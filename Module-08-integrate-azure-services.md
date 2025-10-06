@@ -1,2 +1,1 @@
-> [!NOTE] 
-> The modules in this repository will guide through the following workflow
+## Integration of Azure Services in Hybrid OpenShift Deployment (Content coming soon)
