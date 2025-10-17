@@ -1,7 +1,7 @@
 Repository for guides and scripts to deploy ARO Virtualization clusters.
 
 > [!IMPORTANT]  
-> As of 10/4/2025 the highest OCP version deployed by Azure Resource Manager in 4.17.27, once deployed you must update the OCP channel to at least 4.18 to support Virtualization
+> As of 10/8/2025 the highest OCP version deployed by Azure Resource Manager in 4.17.27, once deployed you must update the OCP channel to at least 4.18 to support Virtualization
 > 
 > ARO clusters nodes that will have the Virtualization Operator installed must have a minimum number of 8 cores assigned and use the Standard_DSv5 VM SKU's
 > 
